@@ -136,18 +136,19 @@
   .theme-toggle .sun { stroke: #f5a623; fill: #f5a623; }
   .theme-toggle .moon { stroke: #8a90a0; fill: #8a90a0; }
   .theme-toggle .toggle-ball {
-    position: absolute;
-    width: 22px;
-    height: 22px;
-    background: var(--accent);
-    border-radius: 50%;
-    top: 2px;
-    left: 2px;
-    transition: transform 0.25s ease;
-  }
-  [data-theme="light"] .theme-toggle .toggle-ball {
-    transform: translateX(18px);
-  }
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: var(--accent);
+  border-radius: 50%;
+  top: 2px;
+  left: 22px; /* Start over moon (dark mode) */
+  transition: transform 0.25s ease;
+}
+
+[data-theme="light"] .theme-toggle .toggle-ball {
+  transform: translateX(-20px); /* Move to sun */
+}
   .nav-cta {
     font-family: var(--mono);
     font-size: 0.75rem;
@@ -435,6 +436,7 @@
     padding: 20px;
     font-family: var(--mono);
     font-size: 0.75rem;
+    overflow-x: auto;
     
   }
   .terminal-header { display: flex; gap: 8px; margin-bottom: 16px; }
@@ -472,7 +474,7 @@
    
   }
   .contact-req{
-    margin-top: 30%;
+    margin-top: 0;
   }
 
   .form-group { margin-bottom: 18px; }
@@ -554,10 +556,91 @@
     .hero-stats { gap: 1.5rem; }
     section { padding: 60px 5%; }
   }
+   .hero-grid {
+    background-size: 40px 40px;
+  }
+  .hero {
+  padding-top: 100px;
+  min-height: auto;
+  line-height: 1.1;
+   max-width: 100%
+}
+.hero h1 {
+  font-size: clamp(2rem, 9vw, 3rem);
+  max-width: 100%;
+}
+.hero-sub {
+  font-size: 1rem;
+  max-width: 100%;
+}
+.hero-glow {
+  width: 300px;
+  height: 250px;
+}
+ .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+@media (min-width: 769px) {
+  .contact-req{
+    margin-top: 30%;
+  }
+}
   @media (max-width: 480px) {
     .service-card, .price-card { padding: 20px; }
     .price-amount { font-size: 1.5rem; }
+     .nav-cta {
+    display: none;
   }
+   .logo-text {
+    font-size: 0.95rem;
+  }
+
+  .logo-icon {
+    width: 30px;
+    height: 30px;
+  }
+   .service-card,
+  .price-card {
+    padding: 18px;
+  }
+
+  .service-name,
+  .price-service {
+    font-size: 1.05rem;
+  }
+  }
+
+  @media (max-width: 360px) {
+
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-sub {
+    font-size: 0.9rem;
+  }
+
+  .btn-group {
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-outline {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .contact-quote-grid {
+    padding: 20px;
+  }
+}
 </style>
 </head>
 <body>
