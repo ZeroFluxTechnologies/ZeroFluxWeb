@@ -458,12 +458,17 @@
     overflow-x: auto;
     
   }
+.terminal-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
 .terminal-cta .btn-primary {
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   justify-content: center;
   text-align: center;
-  margin-top: 30px;
-  margin-left: 28%;
 }
  
   .terminal-header { display: flex; gap: 8px; margin-bottom: 16px; }
@@ -641,6 +646,9 @@
   .service-name,
   .price-service {
     font-size: 1.05rem;
+  }
+   .terminal-cta .btn-primary {
+    max-width: 100%;
   }
   }
 
