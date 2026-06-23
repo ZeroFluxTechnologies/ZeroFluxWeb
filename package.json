@@ -1,0 +1,9 @@
+
+{
+  "name": "zerofluxweb",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "resend": "^6.14.0"
+  }
+}
