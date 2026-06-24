@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Zeroflux Technologies provides IT support, Linux server administration, network setup, backup solutions and cybersecurity services in Nigeria.">
+<meta name="keywords" content="IT support Nigeria, Linux administration, network setup, cybersecurity, managed IT services, Ibadan">
+<meta name="author" content="Zeroflux Technologies">
 <title>Zeroflux Technologies | IT Support & System Admin — Nigeria</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -342,6 +345,64 @@
     font-weight: 300;
   }
 
+/*ABOUT SECTION*/
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.about-lead {
+  font-size: 1.15rem;
+  color: var(--text);
+  margin-bottom: 20px;
+  line-height: 1.8;
+}
+
+.about-content p {
+  color: var(--text2);
+  margin-bottom: 18px;
+  line-height: 1.8;
+}
+
+.about-highlights {
+  display: grid;
+  gap: 16px;
+  align-self: center;
+}
+
+.about-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  transition: 0.25s ease;
+}
+
+.about-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.about-card h3 {
+  font-family: var(--heading);
+  margin-bottom: 10px;
+  color: var(--accent);
+}
+
+.about-card p {
+  color: var(--text2);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
   /* SERVICES GRID - 3x3 */
   .services-grid, .pricing-grid {
     display: grid;
@@ -530,6 +591,83 @@
   50% {
     opacity: 0;
   }
+}
+
+
+/* FAQ SECTION */
+
+.faq-container {
+  max-width: 900px;
+  margin: 40px auto 0;
+}
+
+.faq-header .section-label {
+  justify-content: center;
+}
+.faq-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 50px;
+}
+
+.faq-header .section-sub {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.faq-item {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  margin-bottom: 14px;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+
+.faq-item:hover {
+  border-color: var(--accent);
+}
+
+.faq-question {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  padding: 20px 24px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: var(--body);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+}
+
+.faq-question span {
+  color: var(--accent);
+  font-size: 1.3rem;
+  transition: transform 0.25s ease;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.faq-answer p {
+  color: var(--text2);
+  padding: 0 24px 20px;
+  line-height: 1.7;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 200px;
+}
+
+.faq-item.active .faq-question span {
+  transform: rotate(45deg);
 }
 
   /* CONTACT */
@@ -735,9 +873,10 @@
   </a>
   <ul class="nav-links">
     <li><a href="#home" class="nav-link">Home</a></li>
+    <li><a href="#about" class="nav-link">About</a></li>
     <li><a href="#services" class="nav-link">Services</a></li>
-    <li><a href="#pricing" class="nav-link">Pricing</a></li>
     <li><a href="#why" class="nav-link">Why Us</a></li>
+    <li><a href="#faq" class="nav-link">FAQ</a></li>
     <li><a href="#contact" class="nav-link">Contact</a></li>
   </ul>
   <div class="nav-right">
@@ -773,6 +912,50 @@
     </div>
   </div>
 
+  <section id="about">
+  <div class="section-label">About Zeroflux</div>
+  <h2 class="section-title">Your Trusted IT Infrastructure Partner</h2>
+
+  <div class="about-grid">
+    <div class="about-content">
+      <p class="about-lead">
+        Zeroflux Technologies helps businesses build reliable, secure, and scalable IT infrastructure without the cost of maintaining a full in-house IT department.
+      </p>
+
+      <p>
+        We specialize in Linux server administration, network setup, system hardening, backup solutions, and ongoing IT support. Our goal is simple: keep your systems running smoothly so you can focus on growing your business.
+      </p>
+
+      <p>
+        Based in Ibadan and serving clients across Nigeria and Africa, we combine practical technical expertise with a security-first approach to deliver dependable IT services for modern organizations.
+      </p>
+    </div>
+
+    <div class="about-highlights">
+      <div class="about-card">
+        <h3>Mission</h3>
+        <p>
+          Deliver reliable and affordable IT solutions that help businesses operate securely and efficiently.
+        </p>
+      </div>
+
+      <div class="about-card">
+        <h3>Focus</h3>
+        <p>
+          Infrastructure, systems administration, networking, security, backups, and managed IT support.
+        </p>
+      </div>
+
+      <div class="about-card">
+        <h3>Approach</h3>
+        <p>
+          Practical solutions, transparent communication, and long-term technology partnerships.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
   <section id="services">
   
     <div class="section-label">What We Do</div>
@@ -789,7 +972,7 @@
     </div>
   </section>
 
-  <section id="pricing" style="background: var(--bg2);">
+  <!-- <section id="pricing" style="background: var(--bg2);">
     <div class="section-label">Fixed naira pricing</div>
     <h2 class="section-title">No retainers? No problem.</h2>
     <p class="section-sub">Pay per project or choose a monthly plan. Zero lock-in, 100% transparent.</p>
@@ -807,7 +990,7 @@
       <div class="price-card"><div class="price-service">Automation Script</div><div class="price-desc-small">Custom Python/bash</div><div class="price-amount">₦35k</div><div class="price-period">per script</div><ul class="price-list"><li>Log parser</li><li>Health checks</li><li>Full docs</li></ul><a  href="#contact" class="btn-primary" style="margin-top: 15px; width: 100%; justify-content:center;">
   Get Started →</a></div>
     </div>
-  </section>
+  </section> -->
 
   <section id="why">
     <div class="why-grid">
@@ -836,6 +1019,116 @@
     </a>
   </div>
   </section>
+
+<section id="faq">
+  <div class="faq-header">
+  <div class="section-label">Frequently Asked Questions</div>
+  <h2 class="section-title">Frequently Asked Questions</h2>
+  <p class="section-sub">
+    Answers to common questions about our IT support, infrastructure services, and support process.
+  </p>
+</div>
+
+  <div class="faq-container">
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Do you provide onsite support?
+        <span>+</span>
+      </button>
+      <div class="faq-answer">
+        <p>
+          Yes. We provide onsite support in Ibadan and surrounding areas, while also offering remote support across Nigeria.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Do you support businesses outside Ibadan?
+        <span>+</span>
+      </button>
+      <div class="faq-answer">
+        <p>
+          Absolutely. Most support, monitoring, troubleshooting, and server administration tasks can be handled remotely.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        What types of businesses do you work with?
+        <span>+</span>
+      </button>
+      <div class="faq-answer">
+        <p>
+          We work with small and medium-sized businesses, startups, schools, professional offices, and organizations that need reliable IT infrastructure and support.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Do you offer monthly IT support plans?
+        <span>+</span>
+      </button>
+      <div class="faq-answer">
+        <p>
+          Yes. We offer customized support plans based on your business size and support requirements.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        What systems and technologies do you support?
+        <span>+</span>
+      </button>
+      <div class="faq-answer">
+        <p>
+          We support Linux servers, business networks, backup systems, firewalls, Wi-Fi infrastructure, monitoring solutions, and IT automation tools.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        How quickly do you respond to support requests?
+        <span>+</span>
+      </button>
+      <div class="faq-answer">
+        <p>
+          Most inquiries receive a response within 24 hours. Clients on support plans receive priority response times.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Can you help improve our network security?
+        <span>+</span>
+      </button>
+      <div class="faq-answer">
+        <p>
+          Yes. We provide security hardening services including firewall configuration, access control, system updates, backup strategies, and security best practices.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Do I need a full-time IT staff member to work with Zeroflux?
+        <span>+</span>
+      </button>
+      <div class="faq-answer">
+        <p>
+          No. Many businesses use Zeroflux as their outsourced IT department, giving them access to professional IT support without the cost of hiring a full-time IT employee.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
 
   <section id="contact" style="background: var(--bg2);">
     
@@ -898,7 +1191,15 @@
       <textarea rows="3" id="message" name="message" placeholder="Describe your current IT challenge..."></textarea>
       <!-- I added name="message" -->
     </div>
-    
+    <!-- Honeypot field - this catches bots that fill all form fields -->
+<div style="position: absolute; left: -9999px; top: -9999px;">
+    <label for="website">Website</label>
+    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+</div>
+
+<!-- Hidden timestamp field for speed check -->
+<input type="hidden" id="formStartTime" name="formStartTime" value="">
+
     <button type="submit" class="btn-submit">Submit quote request →</button>
   </form>
   
@@ -910,7 +1211,7 @@
 </main>
 
 <footer>
-  <div>© 2025 Zeroflux Technologies — IT Support & System Administration for Nigeria & Africa.</div>
+  <div>© 2026 Zeroflux Technologies — IT Support & System Administration for Nigeria & Africa.</div>
   <div>Ibadan, Nigeria</div>
 </footer>
 
@@ -923,16 +1224,73 @@
 
  //Contact Us Formvercel --version
 
-  // Get the form element
+  // Get the form elements
   const form = document.getElementById('quoteForm');
   const statusDiv = document.getElementById('formStatus');
   
+  // Set timestamp when page loads
+  document.getElementById('formStartTime').value = Date.now();
+
   // Listen for form submission
   form.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Stop page refresh
+    e.preventDefault();
     
-    console.log('=== FORM SUBMITTED ==='); // ADD THIS
-    
+    // Get the submit button for status updates
+    const submitBtn = form.querySelector('.btn-submit');
+    const originalText = submitBtn.textContent;
+
+    // --- SPAM PROTECTION CHECKS ---
+
+    // 1️⃣ Honeypot check
+    const website = document.getElementById('website').value;
+    if (website) {
+      console.log('🛡️ Spam blocked: Honeypot triggered');
+      statusDiv.style.display = 'block';
+      statusDiv.style.backgroundColor = '#D1FAE5';
+      statusDiv.style.color = '#065F46';
+      statusDiv.style.padding = '15px';
+      statusDiv.style.borderRadius = '8px';
+      statusDiv.style.border = '1px solid #A7F3D0';
+      statusDiv.textContent = '✅ Thank you! Your quote request has been sent.';
+      form.reset();
+      return;
+    }
+
+    // 2️⃣ Speed check
+    const formStartTime = parseInt(document.getElementById('formStartTime').value);
+    const timeTaken = Date.now() - formStartTime;
+    if (timeTaken < 3000) {
+      console.log(`🛡️ Spam blocked: Submitted too fast (${timeTaken}ms)`);
+      statusDiv.style.display = 'block';
+      statusDiv.style.backgroundColor = '#D1FAE5';
+      statusDiv.style.color = '#065F46';
+      statusDiv.style.padding = '15px';
+      statusDiv.style.borderRadius = '8px';
+      statusDiv.style.border = '1px solid #A7F3D0';
+      statusDiv.textContent = '✅ Thank you! Your quote request has been sent.';
+      form.reset();
+      return;
+    }
+
+    // 3️⃣ Referrer check
+    const referrer = document.referrer || '';
+    if (referrer && !referrer.includes('zeroflux') && !referrer.includes('localhost')) {
+      console.log('🛡️ Spam blocked: Invalid referrer -', referrer);
+      statusDiv.style.display = 'block';
+      statusDiv.style.backgroundColor = '#D1FAE5';
+      statusDiv.style.color = '#065F46';
+      statusDiv.style.padding = '15px';
+      statusDiv.style.borderRadius = '8px';
+      statusDiv.style.border = '1px solid #A7F3D0';
+      statusDiv.textContent = '✅ Thank you! Your quote request has been sent.';
+      form.reset();
+      return;
+    }
+
+    console.log('✅ Spam checks passed - processing form...');
+
+    // --- END SPAM CHECKS ---
+
     // Get all form values
     const name = document.getElementById('name').value;
     const company = document.getElementById('company').value;
@@ -941,41 +1299,23 @@
     const service = document.getElementById('service').value;
     const message = document.getElementById('message').value;
     
-    console.log('Form data:', { name, company, email, phone, service, message }); // ADD THIS
-    
     // Show loading state
-    const submitBtn = form.querySelector('.btn-submit');
-    const originalText = submitBtn.textContent;
-    submitBtn.textContent = '⏳ Sending...';
     submitBtn.disabled = true;
-    
-    // Hide any previous status
+    submitBtn.textContent = '⏳ Sending...';
     statusDiv.style.display = 'none';
     statusDiv.className = '';
     
     try {
       // Send data to your Vercel API
-      console.log('Sending to /api/send-email...'); // ADD THIS
-      
       const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          name: name,
-          company: company,
-          email: email,
-          phone: phone,
-          service: service,
-          message: message
-        }),
+        body: JSON.stringify({ name, company, email, phone, service, message }),
       });
       
-      console.log('Response status:', response.status); // ADD THIS
-      
       const data = await response.json();
-      console.log('Response data:', data); // ADD THIS
       
       if (response.ok) {
         // Success!
@@ -985,10 +1325,10 @@
         statusDiv.style.padding = '15px';
         statusDiv.style.borderRadius = '8px';
         statusDiv.style.border = '1px solid #A7F3D0';
-        statusDiv.textContent = 'Thank you! Your quote request has been sent. We\'ll get back to you within 24 hours.';
-        
-        // Clear the form
+        statusDiv.textContent = '✅ Thank you! Your quote request has been sent. We\'ll get back to you within 24 hours.';
         form.reset();
+        // Reset timestamp for next submission
+        document.getElementById('formStartTime').value = Date.now();
       } else {
         // Error from server
         statusDiv.style.display = 'block';
@@ -1000,8 +1340,6 @@
         statusDiv.textContent = data.error || '❌ Failed to send. Please try again.';
       }
     } catch (error) {
-      console.error('CATCH ERROR:', error); // ADD THIS
-      
       // Network error
       statusDiv.style.display = 'block';
       statusDiv.style.backgroundColor = '#FEE2E2';
@@ -1012,8 +1350,8 @@
       statusDiv.textContent = '❌ Network error. Please check your connection and try again.';
     } finally {
       // Reset button
-      submitBtn.textContent = originalText;
       submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
     }
   });
 
@@ -1164,6 +1502,16 @@ terminalObserver.observe(
 
 document.querySelectorAll('.reveal').forEach(el => {
   revealObserver.observe(el);
+});
+
+
+// FAQ Accordion
+
+document.querySelectorAll('.faq-question').forEach(button => {
+  button.addEventListener('click', () => {
+    const faqItem = button.parentElement;
+    faqItem.classList.toggle('active');
+  });
 });
 
   // Section highlight on scroll
