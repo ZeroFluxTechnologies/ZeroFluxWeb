@@ -83,6 +83,12 @@
   [data-theme="light"] nav {
     background: rgba(244,246,252,0.9);
   }
+  .logo-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
   .logo {
     display: flex;
     align-items: center;
@@ -866,11 +872,10 @@
 
 <nav>
   <a href="#" class="logo">
-    <div class="logo-icon">
-      <svg viewBox="0 0 24 24" stroke="currentColor"><path d="M4 4L20 20M20 4L4 20" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke-width="1.5"/></svg>
-    </div>
+    <img src="img/zeroflux-logo.png" alt="Zeroflux Technologies Logo" class="logo-image">
     <span class="logo-text">Zeroflux<span>.</span>Technologies</span>
   </a>
+  <link rel="icon" type="image/jpeg" href="/img/zeroflux-logo.jpg">
   <ul class="nav-links">
     <li><a href="#home" class="nav-link">Home</a></li>
     <li><a href="#about" class="nav-link">About</a></li>

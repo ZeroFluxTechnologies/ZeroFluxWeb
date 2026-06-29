@@ -1,0 +1,54 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .pill { fill: transparent; }
+    .gap-mask { fill: none; stroke: transparent; stroke-width: 8; }
+    @media (prefers-color-scheme: light) {
+      .pill { fill: #111; }
+      .gap-mask { stroke: #111; }
+    }
+    @media (prefers-color-scheme: dark) {
+      .gap-mask { stroke: #0a0a0a; }
+    }
+  </style>
+
+  <!-- Dark pill background (visible on light theme only) -->
+  <rect class="pill" x="14" y="14" width="172" height="172" rx="86"/>
+
+  <!-- Glow halos -->
+  <circle cx="100" cy="100" r="72" fill="none" stroke="#1fdd5a" stroke-width="28" opacity="0.06"/>
+  <circle cx="100" cy="100" r="72" fill="none" stroke="#1fdd5a" stroke-width="16" opacity="0.10"/>
+
+  <!-- Main ring -->
+  <circle cx="100" cy="100" r="72" fill="none" stroke="#1fdd5a" stroke-width="5.5"/>
+
+  <!-- Ring gap top-right -->
+  <path class="gap-mask" d="M100 28 A72 72 0 0 1 148 51"/>
+  <!-- Ring gap bottom-left -->
+  <path class="gap-mask" d="M100 172 A72 72 0 0 1 52 149"/>
+
+  <!-- Circuit stub lines -->
+  <line x1="146" y1="53" x2="162" y2="38" stroke="#1fdd5a" stroke-width="2" stroke-linecap="round"/>
+  <line x1="54" y1="147" x2="38" y2="162" stroke="#1fdd5a" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Circuit node top-right -->
+  <circle cx="166" cy="34" r="5" fill="none" stroke="#1fdd5a" stroke-width="2"/>
+  <circle cx="166" cy="34" r="2" fill="#1fdd5a"/>
+
+  <!-- Circuit node bottom-left -->
+  <circle cx="34" cy="166" r="5" fill="none" stroke="#1fdd5a" stroke-width="2"/>
+  <circle cx="34" cy="166" r="2" fill="#1fdd5a"/>
+
+  <!-- Z letter: top bar -->
+  <rect x="58" y="72" width="48" height="11" rx="2" fill="#1fdd5a"/>
+  <!-- Z letter: diagonal -->
+  <polygon points="98,83 106,83 76,117 68,117" fill="#1fdd5a"/>
+  <!-- Z letter: bottom bar -->
+  <rect x="58" y="117" width="48" height="11" rx="2" fill="#1fdd5a"/>
+
+  <!-- F letter: vertical stem -->
+  <rect x="108" y="72" width="11" height="56" rx="2" fill="#e8eaea"/>
+  <!-- F letter: top bar -->
+  <rect x="108" y="72" width="40" height="11" rx="2" fill="#e8eaea"/>
+  <!-- F letter: middle bar -->
+  <rect x="108" y="94" width="30" height="10" rx="2" fill="#e8eaea"/>
+</svg>
