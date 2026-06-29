@@ -1,1559 +1,364 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="description" content="Zeroflux Technologies provides IT support, Linux server administration, network setup, backup solutions and cybersecurity services in Nigeria.">
-<meta name="keywords" content="IT support Nigeria, Linux administration, network setup, cybersecurity, managed IT services, Ibadan">
-<meta name="author" content="Zeroflux Technologies">
-<title>Zeroflux Technologies | IT Support & System Admin — Nigeria</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="description" content="Zeroflux Technologies provides IT support, Linux server administration, network setup, backup solutions and cybersecurity services in Nigeria.">
+  <meta name="keywords" content="IT support Nigeria, Linux administration, network setup, cybersecurity, managed IT services, Ibadan">
+  <meta name="author" content="Zeroflux Technologies">
+  <title>Zeroflux Technologies | IT Support & System Admin — Nigeria</title>
 
-  :root {
-    --bg: #0a0c10;
-    --bg2: #0f1218;
-    --bg3: #151a22;
-    --surface: #1a2030;
-    --border: rgba(255,255,255,0.07);
-    --border2: rgba(255,255,255,0.12);
-    --text: #e8eaf0;
-    --text2: #8a90a0;
-    --text3: #555e72;
-    --accent: #00e88f;
-    --accent2: #00c97a;
-    --accent-glow: rgba(0,232,143,0.15);
-    --accent-glow2: rgba(0,232,143,0.06);
-    --heading: 'Syne', sans-serif;
-    --body: 'DM Sans', sans-serif;
-    --mono: 'DM Mono', monospace;
-  }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  [data-theme="light"] {
-    --bg: #f4f6fc;
-    --bg2: #eef2f8;
-    --bg3: #e6eaf2;
-    --surface: #ffffff;
-    --border: rgba(0,0,0,0.06);
-    --border2: rgba(0,0,0,0.12);
-    --text: #0f1a2c;
-    --text2: #3f4a66;
-    --text3: #7b85a0;
-    --accent: #008855;
-    --accent2: #006a42;
-    --accent-glow: rgba(0,136,85,0.08);
-    --accent-glow2: rgba(0,136,85,0.03);
-  }
-
-  html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 80px;
-  }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--body);
-    font-size: 16px;
-    line-height: 1.6;
-    transition: background 0.2s ease, color 0.2s ease;
-    overflow-x: hidden;
-  }
-
-  /* NAVIGATION */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 1000;
-    padding: 0 5%;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(10,12,16,0.85);
-    backdrop-filter: blur(18px);
-    border-bottom: 1px solid var(--border);
-    transition: background 0.2s;
-  }
-  [data-theme="light"] nav {
-    background: rgba(244,246,252,0.9);
-  }
-  .logo-image {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-  }
-  .logo-icon {
-    width: 34px; height: 34px;
-    background: var(--surface);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--border2);
-  }
-  .logo-icon svg { width: 20px; height: 20px; stroke: var(--accent); stroke-width: 1.8; fill: none; }
-  .logo-text {
-    font-family: var(--heading);
-    font-weight: 800;
-    font-size: 1.2rem;
-    letter-spacing: -0.02em;
-    color: var(--text);
-  }
-  .logo-text span { color: var(--accent); }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    color: var(--text2);
-    text-decoration: none;
-    letter-spacing: 0.02em;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover, .nav-links a.active { color: var(--accent); }
-  .nav-right { display: flex; align-items: center; gap: 1rem; }
-  .theme-toggle {
-    width: 46px;
-    height: 28px;
-    background: var(--surface);
-    border: 1px solid var(--border2);
-    border-radius: 30px;
-    cursor: pointer;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 6px;
-  }
-  .theme-toggle svg {
-    width: 14px;
-    height: 14px;
-    z-index: 1;
-  }
-  .theme-toggle .sun { stroke: #f5a623; fill: #f5a623; }
-  .theme-toggle .moon { stroke: #8a90a0; fill: #8a90a0; }
-  .theme-toggle .toggle-ball {
-  position: absolute;
-  width: 22px;
-  height: 22px;
-  background: var(--accent);
-  border-radius: 50%;
-  top: 2px;
-  left: 22px; /* Start over moon (dark mode) */
-  transition: transform 0.25s ease;
-}
-
-[data-theme="light"] .theme-toggle .toggle-ball {
-  transform: translateX(-20px); /* Move to sun */
-}
-  .nav-cta {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    font-weight: 500;
-    background: var(--accent);
-    color: #000;
-    padding: 7px 18px;
-    border-radius: 30px;
-    text-decoration: none;
-    letter-spacing: 0.03em;
-    transition: all 0.2s;
-  }
-  .nav-cta:hover { background: var(--accent2); transform: translateY(-1px); }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    padding: 110px 5% 80px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .hero-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
-}
-
-  .hero-glow {
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    width: 550px;
-    height: 450px;
-    background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 70%);
-    transform: translateX(-50%);
-    pointer-events: none;
-  }
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--accent);
-    border: 1px solid rgba(0,232,143,0.25);
-    background: var(--accent-glow2);
-    padding: 5px 14px;
-    border-radius: 60px;
-    margin-bottom: 28px;
-    letter-spacing: 0.1em;
-    width: fit-content;
-  }
-  .hero-badge::before {
-    content: '';
-    width: 6px; height: 6px;
-    background: var(--accent);
-    border-radius: 50%;
-    box-shadow: 0 0 6px var(--accent);
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
-  .hero h1 {
-    font-family: var(--heading);
-    font-size: clamp(2.8rem, 8vw, 4rem);
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    max-width: 15ch;
-    margin-bottom: 24px;
-  }
-  .hero h1 .accent { color: var(--accent); }
-
-.hero h1 .outline {
-  -webkit-text-stroke: 2px var(--text3);
-  color: transparent;
-}
-
-[data-theme="light"] .hero h1 .outline {
-  -webkit-text-stroke: 2px var(--text3);
-}
- .hero-sub {
-  font-size: 18px;
-  color: var(--text2);
-  max-width: 560px;
-  margin-bottom: 48px;
-  line-height: 1.7;
-  font-weight: 300;
-}
- .btn-primary,
-.btn-outline {
-  position: relative;
-  z-index: 10;
-}
-  .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .btn-primary {
-    background: var(--accent);
-    color: #000;
-    font-family: var(--mono);
-    font-weight: 500;
-    padding: 12px 28px;
-    border-radius: 40px;
-    text-decoration: none;
-    font-size: 0.85rem;
-    transition: all 0.2s;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 20px var(--accent-glow); background: var(--accent2); }
-  .btn-outline {
-    border: 1px solid var(--border2);
-    padding: 12px 28px;
-    border-radius: 40px;
-    color: var(--text2);
-    text-decoration: none;
-    font-size: 0.85rem;
-    transition: all 0.2s;
-  }
-  .btn-outline:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-glow2); }
-  .hero-stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  margin-top: 70px;
-  padding-top: 30px;
-  border-top: 1px solid var(--border);
-}
-
-.hero-stats > div {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  padding: 14px 16px;
-  border-radius: 14px;
-  text-align: left;
-  transition: 0.2s ease;
-}
-
-.hero-stats > div:hover {
-  border-color: var(--accent);
-  transform: translateY(-2px);
-}
-  .stat-number { font-family: var(--heading); font-size: 2rem; font-weight: 800; color: var(--text); }
-  .stat-number span { color: var(--accent); }
-  .stat-label { font-family: var(--mono); font-size: 0.7rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; }
-
-  /* SECTIONS */
-  section {
-    padding: 90px 5%;
-    position: relative;
-    transition: background 0.3s ease;
-  }
-  .section-highlight {
-    background: var(--accent-glow2);
-    box-shadow: inset 0 0 0 1px var(--accent-glow);
-  }
-  .section-label {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 12px;
-  }
-  .section-label::before {
-    content: '';
-    width: 28px; height: 1px;
-    background: var(--accent);
-  }
-  .section-title {
-    font-family: var(--heading);
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 18px;
-  }
-  .section-sub {
-    color: var(--text2);
-    max-width: 540px;
-    margin-bottom: 48px;
-    font-weight: 300;
-  }
-
-/*ABOUT SECTION*/
-.about-grid {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 40px;
-  align-items: center;
-}
-
-.about-lead {
-  font-size: 1.15rem;
-  color: var(--text);
-  margin-bottom: 20px;
-  line-height: 1.8;
-}
-
-.about-content p {
-  color: var(--text2);
-  margin-bottom: 18px;
-  line-height: 1.8;
-}
-
-.about-highlights {
-  display: grid;
-  gap: 16px;
-  align-self: center;
-}
-
-.about-card {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 20px;
-  transition: 0.25s ease;
-}
-
-.about-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-2px);
-}
-
-.about-card h3 {
-  font-family: var(--heading);
-  margin-bottom: 10px;
-  color: var(--accent);
-}
-
-.about-card p {
-  color: var(--text2);
-  font-size: 0.9rem;
-  line-height: 1.7;
-}
-
-@media (max-width: 768px) {
-  .about-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-  /* SERVICES GRID - 3x3 */
-  .services-grid, .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-top: 20px;
-  }
-  .service-card, .price-card {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 28px 24px;
-    transition: all 0.25s ease;
-    display: flex;
-    flex-direction: column;
-  }
-  .service-card:hover, .price-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--accent);
-  }
-  .price-card.featured {
-    border-color: var(--accent);
-    background: var(--surface);
-  }
-  .price-badge {
-    background: var(--accent);
-    color: #000;
-    font-size: 0.7rem;
-    font-family: var(--mono);
-    padding: 3px 12px;
-    border-radius: 30px;
-    display: inline-block;
-    margin-bottom: 18px;
-    width: fit-content;
-  }
-  .service-icon {
-    width: 48px; height: 48px;
-    border-radius: 14px;
-    background: var(--accent-glow2);
-    border: 1px solid rgba(0,232,143,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  .service-icon svg { width: 24px; height: 24px; stroke: var(--accent); stroke-width: 1.7; fill: none; }
-  .service-name, .price-service {
-    font-family: var(--heading);
-    font-weight: 700;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-  }
-  .service-desc, .price-desc-small {
-    font-size: 0.85rem;
-    color: var(--text2);
-    line-height: 1.65;
-    margin-bottom: 16px;
-  }
-  .service-tag {
-    font-size: 0.7rem;
-    font-family: var(--mono);
-    color: var(--accent);
-    border: 1px solid rgba(0,232,143,0.25);
-    display: inline-block;
-    padding: 3px 12px;
-    border-radius: 40px;
-    width: fit-content;
-    margin-top: auto;
-  }
-  .price-amount {
-    font-family: var(--heading);
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: var(--accent);
-    letter-spacing: -0.02em;
-  }
-  .price-period {
-    font-size: 0.7rem;
-    color: var(--text3);
-    font-family: var(--mono);
-    margin-bottom: 16px;
-  }
-  .price-list {
-    margin-top: auto;
-    list-style: none;
-    border-top: 1px solid var(--border);
-    padding-top: 18px;
-  }
-  .price-list li {
-    font-size: 0.8rem;
-    color: var(--text2);
-    padding: 5px 0;
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
-  .price-list li::before { content: "▹"; color: var(--accent); font-size: 0.7rem; }
-
-  /* WHY US */
-  .why-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    align-items: center;
-    
-  }
- 
-.terminal-cta {
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
-}
-
-.terminal-cta .btn-primary{
-    width: min(400px, 100%);
-    margin: 30px auto 0;
-    display: flex;
-    justify-content: center;
-}
- .terminal {
-  background: var(--bg3);
-  border: 1px solid var(--border2);
-  border-radius: 18px;
-  padding: 20px;
-  overflow: hidden;
-  min-height: 350px;
-}
-
-.terminal-header {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 18px;
-}
-
-.terminal-dot {
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-}
-
-.terminal-dot.red {
-  background: #ff5f56;
-}
-
-.terminal-dot.yellow {
-  background: #ffbd2e;
-}
-
-.terminal-dot.green {
-  background: #27c93f;
-}
-
-#terminal-output {
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  line-height: 1.8;
-}
-
-.terminal-line {
-  white-space: pre-wrap;
-  margin-bottom: 8px;
-}
-
-.boot-system {
-  color: var(--text2);
-}
-
-.boot-ok {
-  color: var(--accent);
-}
-
-.ai-mode {
-  color: #6ea8ff;
-}
-
-.cursor {
-  display: inline-block;
-  width: 8px;
-  height: 16px;
-  background: var(--accent);
-  margin-left: 2px;
-  animation: blink 0.8s infinite;
-}
-
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-}
-
-
-/* FAQ SECTION */
-
-.faq-container {
-  max-width: 900px;
-  margin: 40px auto 0;
-}
-
-.faq-header .section-label {
-  justify-content: center;
-}
-.faq-header {
-  text-align: center;
-  max-width: 700px;
-  margin: 0 auto 50px;
-}
-
-.faq-header .section-sub {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.faq-item {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  margin-bottom: 14px;
-  overflow: hidden;
-  transition: all 0.25s ease;
-}
-
-.faq-item:hover {
-  border-color: var(--accent);
-}
-
-.faq-question {
-  width: 100%;
-  background: transparent;
-  border: none;
-  color: var(--text);
-  padding: 20px 24px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 600;
-  font-family: var(--body);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  text-align: left;
-}
-
-.faq-question span {
-  color: var(--accent);
-  font-size: 1.3rem;
-  transition: transform 0.25s ease;
-}
-
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-}
-
-.faq-answer p {
-  color: var(--text2);
-  padding: 0 24px 20px;
-  line-height: 1.7;
-}
-
-.faq-item.active .faq-answer {
-  max-height: 200px;
-}
-
-.faq-item.active .faq-question span {
-  transform: rotate(45deg);
-}
-
-  /* CONTACT */
-  .contact-quote-grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 40px;
-    background: var(--bg2);
-    border-radius: 28px;
-    padding: 40px;
-    border: 1px solid var(--border);
-   
-  }
-  .contact-req{
-    margin-top: 0;
-  }
-
-  .form-group { margin-bottom: 18px; }
-  .form-group label {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text3);
-    font-family: var(--mono);
-    display: block;
-    margin-bottom: 6px;
-  }
-  .form-group input, .form-group select, .form-group textarea {
-    width: 100%;
-    background: var(--surface);
-    border: 1px solid var(--border2);
-    padding: 12px 16px;
-    border-radius: 12px;
-    font-family: var(--body);
-    color: var(--text);
-    font-size: 0.9rem;
-    transition: 0.2s;
-  }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-    box-shadow: 0 0 0 2px var(--accent-glow);
-  }
-  .btn-submit {
-    background: var(--accent);
-    color: #000;
-    font-weight: 600;
-    padding: 12px;
-    width: 100%;
-    border: none;
-    border-radius: 40px;
-    font-family: var(--mono);
-    cursor: pointer;
-    transition: 0.2s;
-  }
-  .btn-submit:hover { transform: translateY(-2px); background: var(--accent2); }
-
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 28px 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    font-size: 0.75rem;
-    color: var(--text3);
-  }
-
-  /* ANIMATIONS */
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* RESPONSIVE */
-  @media (max-width: 1024px) {
-    .services-grid, .pricing-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .services-grid, .pricing-grid {
-      grid-template-columns: 1fr;
-    }
-    .why-grid { grid-template-columns: 1fr; }
-    .contact-quote-grid { grid-template-columns: 1fr; padding: 28px; }
-    .hero-stats { gap: 1.5rem; }
-    section { padding: 60px 5%; }
   
-   .hero-grid {
-    background-size: 40px 40px;
-  }
-  .hero {
-  padding-top: 100px;
-  min-height: auto;
-  line-height: 1.1;
-   max-width: 100%
-}
-.hero h1 {
-  font-size: clamp(2rem, 9vw, 3rem);
-  max-width: 100%;
-}
-.hero-sub {
-  font-size: 1rem;
-  max-width: 100%;
-}
-.hero-glow {
-  width: 300px;
-  height: 250px;
-}
- .hero-stats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
+  <link rel="icon" type="image/jpeg" href="/img/zeroflux-logo.png">
 
-  .stat-number {
-    font-size: 1.5rem;
-  }
-   footer {
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-  }
-  }
-@media (min-width: 769px) {
-  .contact-req{
-    margin-top: 30%;
-  }
-}
-  @media (max-width: 480px) {
-    .service-card, .price-card { padding: 20px; }
-    .price-amount { font-size: 1.5rem; }
-     .nav-cta {
-    display: none;
-  }
-   .logo-text {
-    font-size: 0.95rem;
-  }
-
-  .logo-icon {
-    width: 30px;
-    height: 30px;
-  }
-   .service-card,
-  .price-card {
-    padding: 18px;
-  }
-
-  .service-name,
-  .price-service {
-    font-size: 1.05rem;
-  }
-   .terminal-cta .btn-primary {
-    max-width: 100%;
-  }
-  }
-
-  @media (max-width: 360px) {
-
-  .hero h1 {
-    font-size: 1.8rem;
-  }
-
-  .hero-sub {
-    font-size: 0.9rem;
-  }
-
-  .btn-group {
-    flex-direction: column;
-  }
-
-  .btn-primary,
-  .btn-outline {
-    width: 100%;
-    justify-content: center;
-    text-align: center;
-  }
-
-  .contact-quote-grid {
-    padding: 20px;
-  }
-}
-</style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <!-- ====================== NAVIGATION ====================== -->
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <a href="#home" class="logo" aria-label="Zeroflux Technologies Home">
+      <img src="img/zeroflux-logo.png" alt="Zeroflux Technologies Logo" class="logo-image">
+      <span class="logo-text">Zeroflux<span>.</span>Technologies</span>
+    </a>
 
-<nav>
-  <a href="#" class="logo">
-    <img src="img/zeroflux-logo.png" alt="Zeroflux Technologies Logo" class="logo-image">
-    <span class="logo-text">Zeroflux<span>.</span>Technologies</span>
-  </a>
-  <link rel="icon" type="image/jpeg" href="/img/zeroflux-logo.jpg">
-  <ul class="nav-links">
-    <li><a href="#home" class="nav-link">Home</a></li>
-    <li><a href="#about" class="nav-link">About</a></li>
-    <li><a href="#services" class="nav-link">Services</a></li>
-    <li><a href="#why" class="nav-link">Why Us</a></li>
-    <li><a href="#faq" class="nav-link">FAQ</a></li>
-    <li><a href="#contact" class="nav-link">Contact</a></li>
-  </ul>
-  <div class="nav-right">
-    <div class="theme-toggle" onclick="toggleTheme()">
-      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      <div class="toggle-ball"></div>
-    </div>
-    <a href="#contact" class="nav-cta">Request Quote</a>
-  </div>
-</nav>
+    <!-- Mobile Menu Button -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
 
-<main>
-  <div class="hero" id="home">
-     <div class="hero-grid"></div>
-    <div class="hero-glow"></div>
-    <div class="hero-badge">IT Support & System Administration</div>
-    <h1>
-      Reliable Systems.<br>
-      <span class="accent">Zero</span> Downtime.<br>
-      <span class="outline">Zero</span> Compromise.
-    </h1>
-    <p class="hero-sub">Zeroflux Technologies delivers IT support, server administration, and network infrastructure for Nigerian enterprises. We're your IT department.</p>
-    <div class="btn-group">
-      <a href="#services" class="btn-primary">Explore services →</a>
-      <a href="#contact" class="btn-outline">Free consultation</a>
-    </div>
-    <div class="hero-stats">
-      <div><div class="stat-number">24<span>/7</span></div><div class="stat-label">Remote support</div></div>
-      <div><div class="stat-number">&lt;4<span>hr</span></div><div class="stat-label">Response SLA</div></div>
-      <div><div class="stat-number">100<span>%</span></div><div class="stat-label">Transparent pricing</div></div>
-      <div><div class="stat-number"><span>₦</span>0</div><div class="stat-label">Hidden fees</div></div>
-    </div>
-  </div>
+    
+    <ul class="nav-links" id="navLinks" role="menubar">
+      <li role="none"><a href="#home" class="nav-link" role="menuitem">Home</a></li>
+      <li role="none"><a href="#about" class="nav-link" role="menuitem">About</a></li>
+      <li role="none"><a href="#services" class="nav-link" role="menuitem">Services</a></li>
+      <li role="none"><a href="#why" class="nav-link" role="menuitem">Why Us</a></li>
+      <li role="none"><a href="#faq" class="nav-link" role="menuitem">FAQ</a></li>
+      <li role="none"><a href="#contact" class="nav-link" role="menuitem">Contact</a></li>
 
-  <section id="about">
-  <div class="section-label">About Zeroflux</div>
-  <h2 class="section-title">Your Trusted IT Infrastructure Partner</h2>
+      <!-- Mobile-only items -->
+      <li class="mobile-only" role="none">
+        <a href="#contact" class="nav-cta" role="menuitem">Request Quote</a>
+      </li>
+      <li class="mobile-only" role="none">
+        <div class="theme-toggle" id="themeToggleMobile" role="button" aria-label="Toggle theme" tabindex="0">
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <div class="toggle-ball" aria-hidden="true"></div>
+        </div>
+      </li>
+    </ul>
 
-  <div class="about-grid">
-    <div class="about-content">
-      <p class="about-lead">
-        Zeroflux Technologies helps businesses build reliable, secure, and scalable IT infrastructure without the cost of maintaining a full in-house IT department.
-      </p>
-
-      <p>
-        We specialize in Linux server administration, network setup, system hardening, backup solutions, and ongoing IT support. Our goal is simple: keep your systems running smoothly so you can focus on growing your business.
-      </p>
-
-      <p>
-        Based in Ibadan and serving clients across Nigeria and Africa, we combine practical technical expertise with a security-first approach to deliver dependable IT services for modern organizations.
-      </p>
-    </div>
-
-    <div class="about-highlights">
-      <div class="about-card">
-        <h3>Mission</h3>
-        <p>
-          Deliver reliable and affordable IT solutions that help businesses operate securely and efficiently.
-        </p>
+    <!-- Desktop Right -->
+    <div class="nav-right">
+      <div class="theme-toggle desktop-only" id="themeToggleDesktop" role="button" aria-label="Toggle theme" tabindex="0">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        <div class="toggle-ball" aria-hidden="true"></div>
       </div>
-
-      <div class="about-card">
-        <h3>Focus</h3>
-        <p>
-          Infrastructure, systems administration, networking, security, backups, and managed IT support.
-        </p>
-      </div>
-
-      <div class="about-card">
-        <h3>Approach</h3>
-        <p>
-          Practical solutions, transparent communication, and long-term technology partnerships.
-        </p>
-      </div>
+      <a href="#contact" class="nav-cta desktop-only">Request Quote</a>
     </div>
-  </div>
-</section>
+  </nav>
 
-  <section id="services">
-  
-    <div class="section-label">What We Do</div>
-    <h2 class="section-title">Core Services</h2>
-    <p class="section-sub">Practical, hands-on IT solutions built for small and medium businesses that need reliable infrastructure without the enterprise price tag.</p>
  
-    <div class="services-grid">
-      <div class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/></svg></div><div class="service-name">Linux Server Admin</div><div class="service-desc">Ubuntu/Debian, user management, cron, SSH hardening & monitoring.</div><span class="service-tag">System administration</span></div>
-      <div class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/><circle cx="12" cy="12" r="10"/></svg></div><div class="service-name">Network Setup</div><div class="service-desc">LAN/Wi-Fi, VLANs, router/switch config, troubleshooting.</div><span class="service-tag">Connectivity</span></div>
-      <div class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div><div class="service-name">Backup & DR</div><div class="service-desc">rsync/rclone, automated backups, disaster recovery planning.</div><span class="service-tag">Data safety</span></div>
-      <div class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="service-name">Firewall & Security</div><div class="service-desc">UFW/iptables/pfSense, port hardening, basic intrusion detection.</div><span class="service-tag">Cyber defense</span></div>
-      <div class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="service-name">Automation Scripting</div><div class="service-desc">Python/Bash scripts to automate repetitive IT tasks.</div><span class="service-tag">Efficiency</span></div>
-      <div class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg></div><div class="service-name">Remote IT Support</div><div class="service-desc">On-demand troubleshooting, helpdesk, maintenance retainers.</div><span class="service-tag">24/7 coverage</span></div>
-    </div>
-  </section>
+  <main>
+   
+    <section id="home" class="hero" aria-labelledby="hero-title">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-glow" aria-hidden="true"></div>
 
-  <!-- <section id="pricing" style="background: var(--bg2);">
-    <div class="section-label">Fixed naira pricing</div>
-    <h2 class="section-title">No retainers? No problem.</h2>
-    <p class="section-sub">Pay per project or choose a monthly plan. Zero lock-in, 100% transparent.</p>
-    <div class="pricing-grid">
-      <div class="price-card"><div class="price-service">Network Setup</div><div class="price-desc-small">Router + switch + wifi optimisation</div><div class="price-amount">₦30k</div><div class="price-period">one-time</div><ul class="price-list"><li>VLAN setup</li><li>Speed optimisation</li><li>Documentation</li></ul><a  href="#contact" class="btn-primary" style="margin-top: 15px; width: 100%; justify-content:center;">
-  Get Started →</a></div>
-      <div class="price-card featured"><div class="price-badge">⭐ Most Popular</div><div class="price-service">Monthly Retainer</div><div class="price-desc-small">Ongoing sysadmin + remote support</div><div class="price-amount">₦150k</div><div class="price-period">per month</div><ul class="price-list"><li>Priority response</li><li>Backup monitoring</li><li>Security patching</li><li>Monthly report</li></ul><a  href="#contact" class="btn-primary" style="margin-top: 15px; width: 100%; justify-content:center;">
-  Get Started →</a></div>
-      <div class="price-card"><div class="price-service">Linux Server Setup</div><div class="price-desc-small">Full hardening & config</div><div class="price-amount">₦30k</div><div class="price-period">per server</div><ul class="price-list"><li>User management</li><li>SSH key auth</li><li>Fail2ban & UFW</li></ul><a  href="#contact" class="btn-primary" style="margin-top: 15px; width: 100%; justify-content:center;">
-  Get Started →</a></div>
-      <div class="price-card"><div class="price-service">Backup Solution</div><div class="price-desc-small">Automated local+cloud backup</div><div class="price-amount">₦40k</div><div class="price-period">setup</div><ul class="price-list"><li>rsync/rclone</li><li>Scheduling</li><li>Restore test</li></ul><a  href="#contact" class="btn-primary" style="margin-top: 15px; width: 100%; justify-content:center;">
-  Get Started →</a></div>
-      <div class="price-card"><div class="price-service">Firewall Hardening</div><div class="price-desc-small">iptables / pfSense audit</div><div class="price-amount">₦20k</div><div class="price-period">one-time</div><ul class="price-list"><li>Port lockdown</li><li>IDS basic</li><li>Policy review</li></ul><a  href="#contact" class="btn-primary" style="margin-top: 15px; width: 100%; justify-content:center;">
-  Get Started →</a></div>
-      <div class="price-card"><div class="price-service">Automation Script</div><div class="price-desc-small">Custom Python/bash</div><div class="price-amount">₦35k</div><div class="price-period">per script</div><ul class="price-list"><li>Log parser</li><li>Health checks</li><li>Full docs</li></ul><a  href="#contact" class="btn-primary" style="margin-top: 15px; width: 100%; justify-content:center;">
-  Get Started →</a></div>
-    </div>
-  </section> -->
-
-  <section id="why">
-    <div class="why-grid">
-      <div>
-        <div class="section-label">Why Zeroflux</div>
-        <h2 class="section-title"> IT that feels like an in‑house team</h2>
-        <div class="why-points">
-          <div class="why-point"><div class="why-num">01</div><div><div style="font-weight:600; margin-bottom:4px;">Local + Africa-ready</div><div style="font-size:0.85rem; color:var(--text2)">Based in Nigeria, serving enterprises that can't afford a full internal IT dept.</div></div></div>
-          <div class="why-point"><div class="why-num">02</div><div><div style="font-weight:600; margin-bottom:4px;">Security-first approach</div><div style="font-size:0.85rem; color:var(--text2)">Every engagement includes basic security hardening.</div></div></div>
-          <div class="why-point"><div class="why-num">03</div><div><div style="font-weight:600; margin-bottom:4px;">Transparent, fixed-fee pricing</div><div style="font-size:0.85rem; color:var(--text2)">No surprise invoices. Fixed price before we start.</div></div></div>
+      <div class="hero-content">
+        <div class="hero-badge">IT Support & System Administration</div>
+        <h1 id="hero-title">
+          Reliable Systems.<br>
+          <span class="accent">Zero</span> Downtime.<br>
+          <span class="outline">Zero</span> Compromise.
+        </h1>
+        <p class="hero-sub">Zeroflux Technologies delivers IT support, server administration, and network infrastructure for Nigerian enterprises. We're your IT department.</p>
+        <div class="btn-group">
+          <a href="#services" class="btn-primary">Explore services →</a>
+          <a href="#contact" class="btn-outline">Free consultation</a>
+        </div>
+        <div class="hero-stats">
+          <div><div class="stat-number">24<span>/7</span></div><div class="stat-label">Remote support</div></div>
+          <div><div class="stat-number">&lt;4<span>hr</span></div><div class="stat-label">Response SLA</div></div>
+          <div><div class="stat-number">100<span>%</span></div><div class="stat-label">Transparent pricing</div></div>
+          <div><div class="stat-number"><span>₦</span>0</div><div class="stat-label">Hidden fees</div></div>
         </div>
       </div>
-     <div class="terminal">
-  <div class="terminal-header">
-    <div class="terminal-dot red"></div>
-    <div class="terminal-dot yellow"></div>
-    <div class="terminal-dot green"></div>
-  </div>
+    </section>
 
-  <div id="terminal-output"></div>
-</div>
-    </div>
-    <div class="terminal-cta">
-    <a href="#contact" class="btn-primary">
-      Talk To Us →
-    </a>
-  </div>
-  </section>
-
-<section id="faq">
-  <div class="faq-header">
-  <div class="section-label">Frequently Asked Questions</div>
-  <h2 class="section-title">Frequently Asked Questions</h2>
-  <p class="section-sub">
-    Answers to common questions about our IT support, infrastructure services, and support process.
-  </p>
-</div>
-
-  <div class="faq-container">
-
-    <div class="faq-item">
-      <button class="faq-question">
-        Do you provide onsite support?
-        <span>+</span>
-      </button>
-      <div class="faq-answer">
-        <p>
-          Yes. We provide onsite support in Ibadan and surrounding areas, while also offering remote support across Nigeria.
-        </p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question">
-        Do you support businesses outside Ibadan?
-        <span>+</span>
-      </button>
-      <div class="faq-answer">
-        <p>
-          Absolutely. Most support, monitoring, troubleshooting, and server administration tasks can be handled remotely.
-        </p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question">
-        What types of businesses do you work with?
-        <span>+</span>
-      </button>
-      <div class="faq-answer">
-        <p>
-          We work with small and medium-sized businesses, startups, schools, professional offices, and organizations that need reliable IT infrastructure and support.
-        </p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question">
-        Do you offer monthly IT support plans?
-        <span>+</span>
-      </button>
-      <div class="faq-answer">
-        <p>
-          Yes. We offer customized support plans based on your business size and support requirements.
-        </p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question">
-        What systems and technologies do you support?
-        <span>+</span>
-      </button>
-      <div class="faq-answer">
-        <p>
-          We support Linux servers, business networks, backup systems, firewalls, Wi-Fi infrastructure, monitoring solutions, and IT automation tools.
-        </p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question">
-        How quickly do you respond to support requests?
-        <span>+</span>
-      </button>
-      <div class="faq-answer">
-        <p>
-          Most inquiries receive a response within 24 hours. Clients on support plans receive priority response times.
-        </p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question">
-        Can you help improve our network security?
-        <span>+</span>
-      </button>
-      <div class="faq-answer">
-        <p>
-          Yes. We provide security hardening services including firewall configuration, access control, system updates, backup strategies, and security best practices.
-        </p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question">
-        Do I need a full-time IT staff member to work with Zeroflux?
-        <span>+</span>
-      </button>
-      <div class="faq-answer">
-        <p>
-          No. Many businesses use Zeroflux as their outsourced IT department, giving them access to professional IT support without the cost of hiring a full-time IT employee.
-        </p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-  <section id="contact" style="background: var(--bg2);">
     
-    <div class="section-label">Request a quote / contact</div>
-    <h2 class="section-title">Tell us your infrastructure needs</h2>
-    <p class="section-sub">We'll respond within 24 hours with a no-obligation proposal.</p>
+    <section id="about" aria-labelledby="about-title">
+      <div class="section-label">About Zeroflux</div>
+      <h2 id="about-title" class="section-title">Your Trusted IT Infrastructure Partner</h2>
+
+      <div class="about-grid">
+        <div class="about-content">
+          <p class="about-lead">Zeroflux Technologies helps businesses build reliable, secure, and scalable IT infrastructure without the cost of maintaining a full in-house IT department.</p>
+          <p>We specialize in Linux server administration, network setup, system hardening, backup solutions, and ongoing IT support. Our goal is simple: keep your systems running smoothly so you can focus on growing your business.</p>
+          <p>Based in Ibadan and serving clients across Nigeria and Africa, we combine practical technical expertise with a security-first approach to deliver dependable IT services for modern organizations.</p>
+        </div>
+
+        <div class="about-highlights">
+          <div class="about-card">
+            <h3>Mission</h3>
+            <p>Deliver reliable and affordable IT solutions that help businesses operate securely and efficiently.</p>
+          </div>
+          <div class="about-card">
+            <h3>Focus</h3>
+            <p>Infrastructure, systems administration, networking, security, backups, and managed IT support.</p>
+          </div>
+          <div class="about-card">
+            <h3>Approach</h3>
+            <p>Practical solutions, transparent communication, and long-term technology partnerships.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+     
+    <section id="services" aria-labelledby="services-title">
+      <div class="section-label">What We Do</div>
+      <h2 id="services-title" class="section-title">Core Services</h2>
+      <p class="section-sub">Practical, hands-on IT solutions built for small and medium businesses that need reliable infrastructure without the enterprise price tag.</p>
+
+      <div class="services-grid">
+        
+        <div class="service-card">
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/></svg>
+          </div>
+          <div class="service-name">Linux Server Admin</div>
+          <div class="service-desc">Ubuntu/Debian, user management, cron, SSH hardening & monitoring.</div>
+          <span class="service-tag">System administration</span>
+        </div>
+
+       
+        <div class="service-card">
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/><circle cx="12" cy="12" r="10"/></svg>
+          </div>
+          <div class="service-name">Network Setup</div>
+          <div class="service-desc">LAN/Wi-Fi, VLANs, router/switch config, troubleshooting.</div>
+          <span class="service-tag">Connectivity</span>
+        </div>
+
+       
+        <div class="service-card">
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          </div>
+          <div class="service-name">Backup & DR</div>
+          <div class="service-desc">rsync/rclone, automated backups, disaster recovery planning.</div>
+          <span class="service-tag">Data safety</span>
+        </div>
+
+        
+        <div class="service-card">
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="service-name">Firewall & Security</div>
+          <div class="service-desc">UFW/iptables/pfSense, port hardening, basic intrusion detection.</div>
+          <span class="service-tag">Cyber defense</span>
+        </div>
+
+       
+        <div class="service-card">
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <div class="service-name">Automation Scripting</div>
+          <div class="service-desc">Python/Bash scripts to automate repetitive IT tasks.</div>
+          <span class="service-tag">Efficiency</span>
+        </div>
+
+     
+        <div class="service-card">
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+          </div>
+          <div class="service-name">Remote IT Support</div>
+          <div class="service-desc">On-demand troubleshooting, helpdesk, maintenance retainers.</div>
+          <span class="service-tag">24/7 coverage</span>
+        </div>
+      </div>
+    </section>
+
+    
+    <section id="why" aria-labelledby="why-title">
+      <div class="why-grid">
+        <div>
+          <div class="section-label">Why Zeroflux</div>
+          <h2 id="why-title" class="section-title">IT that feels like an in‑house team</h2>
+          <div class="why-points">
+            <div class="why-point">
+              <div class="why-num">01</div>
+              <div><div class="why-point-title">Local + Africa-ready</div><div class="why-point-desc">Based in Nigeria, serving enterprises that can't afford a full internal IT dept.</div></div>
+            </div>
+            <div class="why-point">
+              <div class="why-num">02</div>
+              <div><div class="why-point-title">Security-first approach</div><div class="why-point-desc">Every engagement includes basic security hardening.</div></div>
+            </div>
+            <div class="why-point">
+              <div class="why-num">03</div>
+              <div><div class="why-point-title">Transparent, fixed-fee pricing</div><div class="why-point-desc">No surprise invoices. Fixed price before we start.</div></div>
+            </div>
+          </div>
+        </div>
+
+      
+        <div class="terminal" role="img" aria-label="Terminal showing system status">
+          <div class="terminal-header" aria-hidden="true">
+            <div class="terminal-dot red"></div>
+            <div class="terminal-dot yellow"></div>
+            <div class="terminal-dot green"></div>
+          </div>
+          <div id="terminal-output"></div>
+        </div>
+      </div>
+      <div class="terminal-cta">
+        <a href="#contact" class="btn-primary">Talk To Us →</a>
+      </div>
+    </section>
+
    
-    <div class="contact-quote-grid">
-      <div class="contact-req">
-        <h3 style="font-family: var(--heading); margin-bottom: 12px; font-size: 1.4rem;">Let's build your IT backbone</h3>
-        <p style="color: var(--text2); font-size: 0.9rem; margin-bottom: 24px;">Enterprises across Nigeria trust Zeroflux for system admin, server management, and network reliability.</p>
-        <div style="font-family: var(--mono); font-size: 0.8rem; color: var(--accent);">📞 +234 704 819 3220</div>
-        <div style="font-family: var(--mono); font-size: 0.8rem; margin-top: 6px;">✉️ hello@zeroflux.tech</div>
-        <div style="margin-top: 18px;"><span style="background:var(--accent-glow2); padding:4px 12px; border-radius:30px; font-size:0.7rem;">📍 Ibadan, Nigeria — on-site & remote</span></div>
+    <section id="faq" aria-labelledby="faq-title">
+      <div class="faq-header">
+        <div class="section-label">Frequently Asked Questions</div>
+        <h2 id="faq-title" class="section-title">Frequently Asked Questions</h2>
+        <p class="section-sub">Answers to common questions about our IT support, infrastructure services, and support process.</p>
       </div>
-      <div>
-  <form id="quoteForm">
-    <!-- I removed onsubmit="handleQuote(event)" - we'll use JavaScript instead -->
-    
-    <div class="form-group">
-      <label>Full name</label>
-      <input type="text" id="name" name="name" required placeholder="Adebayo O. Bolaji">
-      <!-- I added name="name" -->
-    </div>
-    
-    <div class="form-group">
-      <label>Company name</label>
-      <input type="text" id="company" name="company" required placeholder="Company name">
-      <!-- I added name="company" (changed id from "name" to "company" to avoid conflict) -->
-    </div>
-    
-    <div class="form-group">
-      <label>Email</label>
-      <input type="email" id="email" name="email" required placeholder="hello@company.com">
-      <!-- I added name="email" -->
-    </div>
-    
-    <div class="form-group">
-      <label>Phone (WhatsApp)</label>
-      <input type="tel" id="phone" name="phone" placeholder="+234 XXX XXX XXX">
-      <!-- I added name="phone" -->
-    </div>
-    
-    <div class="form-group">
-      <label>Service / Interest</label>
-      <select id="service" name="service">
-        <!-- I added name="service" -->
-        <option>Linux server administration</option>
-        <option>Network setup & security</option>
-        <option>Monthly retainer (IT support)</option>
-        <option>Backup & DR solution</option>
-        <option>Firewall & hardening</option>
-        <option>Automation scripts</option>
-        <option>Other / urgent support</option>
-      </select>
-    </div>
-    
-    <div class="form-group">
-      <label>Brief description</label>
-      <textarea rows="3" id="message" name="message" placeholder="Describe your current IT challenge..."></textarea>
-      <!-- I added name="message" -->
-    </div>
-    <!-- Honeypot field - this catches bots that fill all form fields -->
-<div style="position: absolute; left: -9999px; top: -9999px;">
-    <label for="website">Website</label>
-    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-</div>
 
-<!-- Hidden timestamp field for speed check -->
-<input type="hidden" id="formStartTime" name="formStartTime" value="">
+      <div class="faq-container">
+        <!-- FAQ Items -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Do you provide onsite support? <span>+</span></button>
+          <div class="faq-answer"><p>Yes. We provide onsite support in Ibadan and surrounding areas, while also offering remote support across Nigeria.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Do you support businesses outside Ibadan? <span>+</span></button>
+          <div class="faq-answer"><p>Absolutely. Most support, monitoring, troubleshooting, and server administration tasks can be handled remotely.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">What types of businesses do you work with? <span>+</span></button>
+          <div class="faq-answer"><p>We work with small and medium-sized businesses, startups, schools, professional offices, and organizations that need reliable IT infrastructure and support.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Do you offer monthly IT support plans? <span>+</span></button>
+          <div class="faq-answer"><p>Yes. We offer customized support plans based on your business size and support requirements.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">What systems and technologies do you support? <span>+</span></button>
+          <div class="faq-answer"><p>We support Linux servers, business networks, backup systems, firewalls, Wi-Fi infrastructure, monitoring solutions, and IT automation tools.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">How quickly do you respond to support requests? <span>+</span></button>
+          <div class="faq-answer"><p>Most inquiries receive a response within 24 hours. Clients on support plans receive priority response times.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Can you help improve our network security? <span>+</span></button>
+          <div class="faq-answer"><p>Yes. We provide security hardening services including firewall configuration, access control, system updates, backup strategies, and security best practices.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Do I need a full-time IT staff member to work with Zeroflux? <span>+</span></button>
+          <div class="faq-answer"><p>No. Many businesses use Zeroflux as their outsourced IT department, giving them access to professional IT support without the cost of hiring a full-time IT employee.</p></div>
+        </div>
+      </div>
+    </section>
 
-    <button type="submit" class="btn-submit">Submit quote request →</button>
-  </form>
+   
+    <section id="contact" aria-labelledby="contact-title">
+      <div class="section-label">Request a quote / contact</div>
+      <h2 id="contact-title" class="section-title">Tell us your infrastructure needs</h2>
+      <p class="section-sub">We'll respond within 24 hours with a no-obligation proposal.</p>
+
+      <div class="contact-quote-grid">
+        <div class="contact-req">
+          <h3 style="font-family: var(--heading); margin-bottom: 12px; font-size: 1.4rem;">Let's build your IT backbone</h3>
+          <p style="color: var(--text2); font-size: 0.9rem; margin-bottom: 24px;">Enterprises across Nigeria trust Zeroflux for system admin, server management, and network reliability.</p>
+          <div style="font-family: var(--mono); font-size: 0.8rem; color: var(--accent);">📞 +234 704 819 3220</div>
+          <div style="font-family: var(--mono); font-size: 0.8rem; margin-top: 6px;">✉️ hello@zeroflux.tech</div>
+          <div style="margin-top: 18px;"><span style="background:var(--accent-glow2); padding:4px 12px; border-radius:30px; font-size:0.7rem;">📍 Ibadan, Nigeria — on-site & remote</span></div>
+        </div>
+
+        <div>
+          <form id="quoteForm" novalidate>
+            <div class="form-group">
+              <label for="name">Full name</label>
+              <input type="text" id="name" name="name" required placeholder="Adebayo O. Bolaji">
+            </div>
+            <div class="form-group">
+              <label for="company">Company name</label>
+              <input type="text" id="company" name="company" required placeholder="Company name">
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required placeholder="hello@company.com">
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone (WhatsApp)</label>
+              <input type="tel" id="phone" name="phone" placeholder="+234 XXX XXX XXX">
+            </div>
+            <div class="form-group">
+              <label for="service">Service / Interest</label>
+              <select id="service" name="service">
+                <option>Linux server administration</option>
+                <option>Network setup & security</option>
+                <option>Monthly retainer (IT support)</option>
+                <option>Backup & DR solution</option>
+                <option>Firewall & hardening</option>
+                <option>Automation scripts</option>
+                <option>Other / urgent support</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Brief description</label>
+              <textarea rows="3" id="message" name="message" placeholder="Describe your current IT challenge..."></textarea>
+            </div>
+
+            <!-- Honeypot -->
+            <div style="position: absolute; left: -9999px; top: -9999px;" aria-hidden="true">
+              <label for="website">Website</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+            </div>
+
+            <!-- Timestamp -->
+            <input type="hidden" id="formStartTime" name="formStartTime" value="">
+
+            <button type="submit" class="btn-submit">Submit quote request →</button>
+          </form>
+          <div id="formStatus" style="margin-top: 20px; display: none;" role="status" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <footer>
+    <div>© 2026 Zeroflux Technologies — IT Support & System Administration for Nigeria & Africa.</div>
+    <div>Ibadan, Nigeria</div>
+  </footer>
+
   
-  <!-- Add this status message div (shows success/error) -->
-  <div id="formStatus" style="margin-top: 20px; display: none;"></div>
-</div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div>© 2026 Zeroflux Technologies — IT Support & System Administration for Nigeria & Africa.</div>
-  <div>Ibadan, Nigeria</div>
-</footer>
-
-<script>
-  function toggleTheme() {
-    const html = document.documentElement;
-    const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', newTheme);
-  }
-
- //Contact Us Formvercel --version
-
-  // Get the form elements
-  const form = document.getElementById('quoteForm');
-  const statusDiv = document.getElementById('formStatus');
-  
-  // Set timestamp when page loads
-  document.getElementById('formStartTime').value = Date.now();
-
-  // Listen for form submission
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    // Get the submit button for status updates
-    const submitBtn = form.querySelector('.btn-submit');
-    const originalText = submitBtn.textContent;
-
-    // --- SPAM PROTECTION CHECKS ---
-
-    // 1️⃣ Honeypot check
-    const website = document.getElementById('website').value;
-    if (website) {
-      console.log('🛡️ Spam blocked: Honeypot triggered');
-      statusDiv.style.display = 'block';
-      statusDiv.style.backgroundColor = '#D1FAE5';
-      statusDiv.style.color = '#065F46';
-      statusDiv.style.padding = '15px';
-      statusDiv.style.borderRadius = '8px';
-      statusDiv.style.border = '1px solid #A7F3D0';
-      statusDiv.textContent = '✅ Thank you! Your quote request has been sent.';
-      form.reset();
-      return;
-    }
-
-    // 2️⃣ Speed check
-    const formStartTime = parseInt(document.getElementById('formStartTime').value);
-    const timeTaken = Date.now() - formStartTime;
-    if (timeTaken < 3000) {
-      console.log(`🛡️ Spam blocked: Submitted too fast (${timeTaken}ms)`);
-      statusDiv.style.display = 'block';
-      statusDiv.style.backgroundColor = '#D1FAE5';
-      statusDiv.style.color = '#065F46';
-      statusDiv.style.padding = '15px';
-      statusDiv.style.borderRadius = '8px';
-      statusDiv.style.border = '1px solid #A7F3D0';
-      statusDiv.textContent = '✅ Thank you! Your quote request has been sent.';
-      form.reset();
-      return;
-    }
-
-    // 3️⃣ Referrer check
-    const referrer = document.referrer || '';
-    if (referrer && !referrer.includes('zeroflux') && !referrer.includes('localhost')) {
-      console.log('🛡️ Spam blocked: Invalid referrer -', referrer);
-      statusDiv.style.display = 'block';
-      statusDiv.style.backgroundColor = '#D1FAE5';
-      statusDiv.style.color = '#065F46';
-      statusDiv.style.padding = '15px';
-      statusDiv.style.borderRadius = '8px';
-      statusDiv.style.border = '1px solid #A7F3D0';
-      statusDiv.textContent = '✅ Thank you! Your quote request has been sent.';
-      form.reset();
-      return;
-    }
-
-    console.log('✅ Spam checks passed - processing form...');
-
-    // --- END SPAM CHECKS ---
-
-    // Get all form values
-    const name = document.getElementById('name').value;
-    const company = document.getElementById('company').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-    const service = document.getElementById('service').value;
-    const message = document.getElementById('message').value;
-    
-    // Show loading state
-    submitBtn.disabled = true;
-    submitBtn.textContent = '⏳ Sending...';
-    statusDiv.style.display = 'none';
-    statusDiv.className = '';
-    
-    try {
-      // Send data to your Vercel API
-      const response = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, company, email, phone, service, message }),
-      });
-      
-      const data = await response.json();
-      
-      if (response.ok) {
-        // Success!
-        statusDiv.style.display = 'block';
-        statusDiv.style.backgroundColor = '#D1FAE5';
-        statusDiv.style.color = '#065F46';
-        statusDiv.style.padding = '15px';
-        statusDiv.style.borderRadius = '8px';
-        statusDiv.style.border = '1px solid #A7F3D0';
-        statusDiv.textContent = '✅ Thank you! Your quote request has been sent. We\'ll get back to you within 24 hours.';
-        form.reset();
-        // Reset timestamp for next submission
-        document.getElementById('formStartTime').value = Date.now();
-      } else {
-        // Error from server
-        statusDiv.style.display = 'block';
-        statusDiv.style.backgroundColor = '#FEE2E2';
-        statusDiv.style.color = '#991B1B';
-        statusDiv.style.padding = '15px';
-        statusDiv.style.borderRadius = '8px';
-        statusDiv.style.border = '1px solid #FCA5A5';
-        statusDiv.textContent = data.error || '❌ Failed to send. Please try again.';
-      }
-    } catch (error) {
-      // Network error
-      statusDiv.style.display = 'block';
-      statusDiv.style.backgroundColor = '#FEE2E2';
-      statusDiv.style.color = '#991B1B';
-      statusDiv.style.padding = '15px';
-      statusDiv.style.borderRadius = '8px';
-      statusDiv.style.border = '1px solid #FCA5A5';
-      statusDiv.textContent = '❌ Network error. Please check your connection and try again.';
-    } finally {
-      // Reset button
-      submitBtn.disabled = false;
-      submitBtn.textContent = originalText;
-    }
-  });
-
-
-// Terminal
-const output = document.getElementById("terminal-output");
-
-const terminalLines = [
-  {
-    text: "[BOOT] Initializing Zeroflux Systems v5.18",
-    cls: "boot-system"
-  },
-  {
-    text: "[OK] Kernel loaded successfully",
-    cls: "boot-ok"
-  },
-  {
-    text: "[OK] Network interfaces online",
-    cls: "boot-ok"
-  },
-  {
-    text: "[OK] SSH service active",
-    cls: "boot-ok"
-  },
-  {
-    text: "[OK] Firewall rules applied",
-    cls: "boot-ok"
-  },
-  {
-    text: "[OK] Monitoring agents running",
-    cls: "boot-ok"
-  },
-  {
-    text: "",
-    cls: ""
-  },
- 
-  {
-    text: "[OK] Running infrastructure diagnostics...",
-    cls: "ai-mode"
-  },
-  {
-    text: "[OK] Server uptime ............ 99.98%",
-    cls: "boot-ok"
-  },
-  {
-    text: "[OK] Network latency ......... 12ms",
-    cls: "boot-ok"
-  },
-  {
-    text: "[OK] Backup integrity ........ VERIFIED",
-    cls: "boot-ok"
-  },
-  {
-    text: "[OK] Security posture ........ HIGH",
-    cls: "boot-ok"
-  },
-  {
-    text: "",
-    cls: ""
-  },
-  {
-    text: "zeroflux@ai:~$ monitoring --live",
-    cls: "boot-system"
-  },
-  {
-    text: "All systems operational.",
-    cls: "boot-ok"
-  }
-];
-
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function typeLine(text, cls) {
-
-  const line = document.createElement("div");
-  line.className = `terminal-line ${cls}`;
-
-  output.appendChild(line);
-
-  const cursor = document.createElement("span");
-  cursor.className = "cursor";
-
-  line.appendChild(cursor);
-
-  for (let i = 0; i < text.length; i++) {
-
-    cursor.insertAdjacentText(
-      "beforebegin",
-      text.charAt(i)
-    );
-
-    await sleep(15 + Math.random() * 25);
-  }
-
-  cursor.remove();
-}
-
-async function startTerminal() {
-
-  for (const item of terminalLines) {
-
-    await typeLine(item.text, item.cls);
-
-    await sleep(250);
-  }
-}
-
-const terminalObserver = new IntersectionObserver(
-  (entries) => {
-
-    entries.forEach(entry => {
-
-      if (entry.isIntersecting) {
-
-  if (output.innerHTML === '') {
-    startTerminal();
-  }
-
-  terminalObserver.disconnect();
-}
-
-    });
-
-  },
-  {
-    threshold: 0.4
-  }
-);
-
-terminalObserver.observe(
-  document.querySelector(".terminal")
-);
- 
-  // Scroll reveal animation
-  const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, {
-  threshold: 0.1,
-  rootMargin: '0px 0px -30px 0px'
-});
-
-document.querySelectorAll('.reveal').forEach(el => {
-  revealObserver.observe(el);
-});
-
-
-// FAQ Accordion
-
-document.querySelectorAll('.faq-question').forEach(button => {
-  button.addEventListener('click', () => {
-
-    const currentItem = button.parentElement;
-
-    document.querySelectorAll('.faq-item').forEach(item => {
-      if (item !== currentItem) {
-        item.classList.remove('active');
-      }
-    });
-
-    currentItem.classList.toggle('active');
-  });
-});
-
-  // Section highlight on scroll
-  const sections = document.querySelectorAll('section, .hero');
-  const navLinks = document.querySelectorAll('.nav-link');
-  function highlightSection() {
-    let current = '';
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 100;
-      const sectionBottom = sectionTop + section.offsetHeight;
-      if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
-        current = section.getAttribute('id');
-        section.classList.add('section-highlight');
-      } else {
-        section.classList.remove('section-highlight');
-      }
-    });
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
-    });
-  }
-  window.addEventListener('scroll', highlightSection);
-  highlightSection();
-  setTimeout(() => {
-    document.querySelectorAll('.hero h1, .hero-sub, .hero-stats, .hero-badge').forEach(el => el.classList.add('visible'));
-  }, 100);
-</script>
+  <script src="js/script.js"></script>
 </body>
 </html>
